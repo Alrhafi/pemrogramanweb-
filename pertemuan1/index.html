@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio | Alrafi</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --bg-soft: #111827;
+        --card: rgba(15, 23, 42, 0.72);
+        --card-strong: #1f2937;
+        --primary: #38bdf8;
+        --secondary: #8b5cf6;
+        --text: #e2e8f0;
+        --muted: #cbd5e1;
+        --line: rgba(148, 163, 184, 0.2);
+        --success: #34d399;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #020817 0%, #0f172a 35%, #111827 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(12px);
+        background: rgba(2, 6, 23, 0.55);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .brand span {
+        color: var(--primary);
+      }
+
+      .menu {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+      }
+
+      .menu a {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        padding: 80px 0 60px;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 36px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        padding: 8px 14px;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.08);
+        color: var(--primary);
+        border-radius: 999px;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 1.1;
+        margin: 0 0 18px;
+      }
+
+      h1 span {
+        color: var(--primary);
+      }
+
+      .lead {
+        font-size: 1.08rem;
+        color: var(--muted);
+        max-width: 620px;
+        margin-bottom: 26px;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 24px;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #03111d;
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(148, 163, 184, 0.04);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .stats {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+      }
+
+      .stats li {
+        min-width: 100px;
+      }
+
+      .stats strong {
+        display: block;
+        font-size: 1.4rem;
+        color: var(--text);
+      }
+
+      .stats span {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .profile-card {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(139, 92, 246, 0.12));
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.4);
+      }
+
+      .avatar {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 18px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #04111d;
+        font-weight: 800;
+        font-size: 4rem;
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.3);
+      }
+
+      .info-box {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .info-box p {
+        margin: 8px 0;
+        color: var(--muted);
+      }
+
+      .info-box strong {
+        color: var(--text);
+      }
+
+      section {
+        padding: 30px 0 48px;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        margin-bottom: 20px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: 1.2rem;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+      }
+
+      .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .list li {
+        margin: 10px 0;
+        padding-left: 16px;
+        position: relative;
+      }
+
+      .list li::before {
+        content: "•";
+        color: var(--primary);
+        position: absolute;
+        left: 0;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        background: rgba(56, 189, 248, 0.08);
+        color: var(--text);
+        font-size: 0.92rem;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .project-card {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 22px;
+      }
+
+      .project-card .badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(52, 211, 153, 0.12);
+        color: var(--success);
+        border: 1px solid rgba(52, 211, 153, 0.35);
+        margin-bottom: 12px;
+      }
+
+      .project-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+      }
+
+      .project-card p {
+        color: var(--muted);
+      }
+
+      .contact {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        padding: 28px 30px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(139, 92, 246, 0.1));
+      }
+
+      .contact a {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 24px 0 52px;
+      }
+
+      @media (max-width: 780px) {
+        .hero-content,
+        .grid,
+        .projects {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .menu {
+          justify-content: center;
+        }
+
+        .hero {
+          padding-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand"><span>AL</span>RAFI</div>
+        <nav class="menu" aria-label="Menu navigasi">
+          <a href="#about">Tentang</a>
+          <a href="#education">Pendidikan</a>
+          <a href="#skills">Skill</a>
+          <a href="#projects">Proyek</a>
+          <a href="#contact">Kontak</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <div>
+            <div class="eyebrow">Portofolio Mahasiswa</div>
+            <h1>Halo, saya <span>Alrafi</span></h1>
+            <p class="lead">
+              Saya adalah mahasiswa jurusan Informatika dengan NIM 2341003.
+              Saat ini saya sedang menempuh pendidikan di STT Mandala dan
+              memiliki minat pada pengembangan web, desain, serta teknologi
+              digital yang bermanfaat untuk masyarakat.
+            </p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#projects">Lihat Proyek</a>
+              <a class="btn btn-secondary" href="#contact">Hubungi Saya</a>
+            </div>
+            <ul class="stats">
+              <li>
+                <strong>1+</strong>
+                <span>Tahun Belajar</span>
+              </li>
+              <li>
+                <strong>5+</strong>
+                <span>Skill</span>
+              </li>
+              <li>
+                <strong>3</strong>
+                <span>Proyek</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="profile-card">
+            <div class="avatar">A</div>
+            <div class="info-box">
+              <p><strong>Nama:</strong> Alrafi</p>
+              <p><strong>Jurusan:</strong> Informatika</p>
+              <p><strong>NIM:</strong> 2341003</p>
+              <p><strong>Kampus:</strong> STT Mandala</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <h2 class="section-title">Tentang Saya</h2>
+          <div class="grid">
+            <div class="card">
+              <h3>Profil</h3>
+              <p>
+                Saya adalah mahasiswa Informatika yang tertarik pada dunia
+                teknologi, khususnya pengembangan web dan pemrograman. Saya
+                senang belajar hal baru, berlatih membuat proyek sederhana, dan
+                terus meningkatkan kemampuan di bidang digital.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Tujuan</h3>
+              <p>
+                Menjadi pribadi yang kompeten dalam bidang teknologi informasi,
+                siap menghadapi tantangan dunia kerja, dan mampu membuat solusi
+                yang bermanfaat melalui kreativitas dan logika.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="container">
+          <h2 class="section-title">Pendidikan</h2>
+          <div class="card">
+            <ul class="list">
+              <li><strong>STT Mandala</strong> — Jurusan Informatika</li>
+              <li><strong>NIM:</strong> 2341003</li>
+              <li><strong>Status:</strong> Mahasiswa aktif</li>
+              <li><strong>Minat:</strong> Web Development, UI/UX, Programming</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <h2 class="section-title">Skill</h2>
+          <div class="card">
+            <div class="skills">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Teamwork</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="container">
+          <h2 class="section-title">Proyek</h2>
+          <div class="projects">
+            <article class="project-card">
+              <span class="badge">Web</span>
+              <h3>Landing Page</h3>
+              <p>
+                Membuat halaman promosi sederhana dengan desain modern dan
+                responsive menggunakan HTML dan CSS.
+              </p>
+            </article>
+
+            <article class="project-card">
+              <span class="badge">UI/UX</span>
+              <h3>Desain Interface</h3>
+              <p>
+                Merancang tampilan antarmuka aplikasi yang user-friendly dengan
+                fokus pada kenyamanan dan estetika.
+              </p>
+            </article>
+
+            <article class="project-card">
+              <span class="badge">Program</span>
+              <h3>Project Akademik</h3>
+              <p>
+                Mengembangkan tugas-tugas kampus yang berhubungan dengan coding,
+                logika, dan solusi digital.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact">
+            <div>
+              <h2 class="section-title" style="margin: 0;">Hubungi Saya</h2>
+              <p style="margin: 8px 0 0; color: var(--muted);">
+                Saya terbuka untuk kolaborasi, proyek, dan pembelajaran.
+              </p>
+            </div>
+            <div>
+              <a href="mailto:alrafi@gmail.com">alrafi@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Alrafi | Jurusan Informatika | STT Mandala
+    </footer>
+  </body>
+</html>
